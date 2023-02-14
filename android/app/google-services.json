@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "165565886817",
+    "project_id": "app-presensi-ab36d",
+    "storage_bucket": "app-presensi-ab36d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165565886817:android:34055b9bbac505f4591520",
+        "android_client_info": {
+          "package_name": "com.fitrayanaf.app_presensi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165565886817-rp6s4fc102tki64ek6se42b1fqk316m9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBypOw804n03_YuSGG8ekqS4V5i5aBMMeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165565886817-rp6s4fc102tki64ek6se42b1fqk316m9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
