@@ -19,13 +19,15 @@ class ProfilePageView extends GetView<ProfilePageController> {
           stream: controller.streamUser(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              const Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
             // If untuk menghandle error
             if (snapshot.hasData) {
               Map<String, dynamic> user = snapshot.data!.data()!;
+              String defaultImage =
+                  'https://ui-avatars.com/api/?name=${user['nama']}';
               return ListView(
                 padding: const EdgeInsets.all(20),
                 children: [
@@ -37,7 +39,13 @@ class ProfilePageView extends GetView<ProfilePageController> {
                           width: 120,
                           height: 120,
                           child: Image.network(
-                            'https://ui-avatars.com/api/?name=${user['nama']}',
+                            // Jika user profile != null dan user profile != '' maka isi nya user profile
+                            // jikaa null maka isinyaa https ui avatars
+                            user['profile'] != null
+                                ? user['profile'] != ''
+                                    ? user['profile']
+                                    : defaultImage
+                                : defaultImage,
                             fit: BoxFit.cover,
                           ),
                         ),
