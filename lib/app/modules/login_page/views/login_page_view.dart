@@ -1,3 +1,4 @@
+import 'package:app_presensi/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -55,7 +56,9 @@ class LoginPageView extends GetView<LoginPageController> {
               child: Text(controller.isLoading.isFalse ? 'Login' : 'Loading..'),
             ),
           ),
-          TextButton(onPressed: () {}, child: const Text('Lupas password ?')),
+          TextButton(
+              onPressed: () => Get.toNamed(Routes.FORGOT_PASSWORD),
+              child: const Text('Lupas password ?')),
         ],
       ),
     );
