@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -61,11 +63,54 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Masih ada permasalahan di bagian stream karena disini menggunakan Get.Arguments, maka nanti akan ada perubahan
-              user['profile'] != null && user['profile'] != ''
-                  ? const Text('Foto Profile')
-                  : const Text('no choosen..'),
+              GetBuilder<UpdateProfileController>(
+                builder: (c) {
+                  // kalau image ada maka dia menampilkan foto terakhir saja
+                  if (c.image != null) {
+                    return ClipOval(
+                      child: SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: Image.file(
+                          File(c.image!.path),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  } else {
+                    // jika null maka tanya lagi
+                    // jika profile user nya tidak null maka menampilkan foto dari user profile
+                    if (user['profile'] != null) {
+                      return Column(
+                        children: [
+                          ClipOval(
+                            child: SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.network(
+                                user['profile'],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              controller.deleteProfile(user['uid']);
+                            },
+                            child: const Text('delete'),
+                          ),
+                        ],
+                      );
+                    } else {
+                      return const Text('no image');
+                    }
+                  }
+                },
+              ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  controller.pickImage();
+                },
                 child: const Text('choosen'),
               ),
             ],
