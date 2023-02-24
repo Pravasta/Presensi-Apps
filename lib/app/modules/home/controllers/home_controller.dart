@@ -10,7 +10,7 @@ class HomeController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   // async* karena dia mode stream artinya memantau terus menerus
-  Stream<DocumentSnapshot<Map<String, dynamic>>> streamRole() async* {
+  Stream<DocumentSnapshot<Map<String, dynamic>>> streamUser() async* {
     String uid = auth.currentUser!.uid; //ambil Uid akun yang login
 
     // Masuk ke collection trus ke doc dengan id lalu get snapshot nya

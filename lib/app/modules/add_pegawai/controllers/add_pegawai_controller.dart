@@ -7,6 +7,7 @@ class AddPegawaiController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLoadingAddPagawai = false.obs;
   TextEditingController nameC = TextEditingController();
+  TextEditingController jobC = TextEditingController();
   TextEditingController nipC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController passAdminC = TextEditingController();
@@ -50,6 +51,7 @@ class AddPegawaiController extends GetxController {
             'nip': nipC.text,
             'nama': nameC.text,
             'email': emailC.text,
+            'job': jobC.text,
             'uid': uid,
             'role': 'pegawai',
             'createAt': DateTime.now().toIso8601String(),
@@ -110,7 +112,8 @@ class AddPegawaiController extends GetxController {
   Future<void> addPegawai() async {
     if (nameC.text.isNotEmpty &&
         nipC.text.isNotEmpty &&
-        emailC.text.isNotEmpty) {
+        emailC.text.isNotEmpty &&
+        jobC.text.isNotEmpty) {
       // Ketika mau buka default dialog, bah tulisan add pegawai ke true
       isLoading.value = true;
       // Untuk validasi apakah yang menambhkan pegawai adalah admin atau bukan
@@ -158,7 +161,7 @@ class AddPegawaiController extends GetxController {
     } else {
       Get.defaultDialog(
           title: 'Terjadi kesalahan',
-          middleText: 'Nama , nip, dan email wajib diisi');
+          middleText: 'Nama , nip, job, dan email wajib diisi');
     }
   }
 }
